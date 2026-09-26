@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amorcito 🤍</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #a8d8ff, #e3f2ff, #ffffff, #b3e0ff);
+            background-size: 400% 400%;
+            animation: fondoAnimado 12s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+            overflow-x: hidden;
+        }
+
+        @keyframes fondoAnimado {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Corazones flotantes */
+        .corazones {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .corazon {
+            position: absolute;
+            bottom: -50px;
+            font-size: 24px;
+            animation: subir linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes subir {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.9; }
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Carta */
+        .carta {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            max-width: 550px;
+            width: 100%;
+            padding: 50px 40px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(100, 180, 255, 0.4),
+                        0 0 0 3px rgba(255,255,255,0.8),
+                        0 0 0 6px rgba(168, 216, 255, 0.5);
+            text-align: center;
+            animation: aparecer 1.2s ease;
+            border: 2px dashed #a8d8ff;
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .carta h1 {
+            font-size: 2em;
+            color: #4a9edb;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+        }
+
+        .carta p {
+            font-size: 1.25em;
+            line-height: 1.9;
+            color: #3a6ea5;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .firma {
+            margin-top: 30px;
+            font-size: 1.1em;
+            color: #6aa9dd;
+            font-style: normal;
+        }
+
+        .decoracion {
+            font-size: 1.8em;
+            margin: 15px 0;
+            letter-spacing: 10px;
+        }
+
+        /* Latido */
+        .latido {
+            display: inline-block;
+            animation: latir 1.5s ease-in-out infinite;
+        }
+
+        @keyframes latir {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Corazones flotantes generados con JS -->
+    <div class="corazones" id="corazones"></div>
+
+    <div class="carta">
+        <h1>💌 Una cartita para ti 💌</h1>
+
+        <div class="decoracion">🩵 🤍 🩵 🤍 🩵</div>
+
+        <p>
+            Hola mi amorcito lindo <strong>aldayr</strong> 🩵<br><br>
+            Quería decirte que te amo muchísimo y que eres el mejor novio del mundo,
+            gracias por hacerme feliz siempre 🤍
+        </p>
+
+        <div class="decoracion">🩵 🤍 🩵 🤍 🩵</div>
+
+        <p class="firma">
+            Con todo mi amor <span class="latido">💙</span>
+        </p>
+    </div>
+
+    <script>
+        // Genera corazones flotantes de colores celeste, blanco y azul
+        const contenedor = document.getElementById('corazones');
+        const emojis = ['🩵', '🤍', '💙', '🩵', '🤍', '❤️‍🩹', '🩵'];
+
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon');
+            corazon.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            corazon.style.left = Math.random() * 100 + '%';
+            corazon.style.fontSize = (Math.random() * 20 + 16) + 'px';
+            corazon.style.animationDuration = (Math.random() * 6 + 6) + 's';
+            corazon.style.animationDelay = Math.random() * 2 + 's';
+            contenedor.appendChild(corazon);
+
+            setTimeout(() => corazon.remove(), 14000);
+        }
+
+        // Crear corazones constantemente
+        setInterval(crearCorazon, 400);
+        // Unos cuantos al inicio
+        for (let i = 0; i < 8; i++) setTimeout(crearCorazon, i * 200);
+    </script>
+
+</body>
+</html>
